@@ -1,0 +1,25 @@
+body {
+  background: linear-gradient(90deg, rgba(228, 235, 237, 0.8), rgba(241, 247, 247, 0.8)), url(../images/billy-huynh-v9bnfMCyKbg-unsplash.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+h1 {
+  background: linear-gradient(358deg, hsla(195, 86%, 50%, 1) 0%, hsla(236, 93%, 65%, 1) 100%);
+  color: white;
+  font-weight: 400;
+}
+
+h3 {
+  color: #406a81;
+}
+
+.bluish {
+  background: #c0dcecbd;
+  padding: 2%;
+}
+
+.greyish {
+  background: #dfedf6db;
+  padding: 2%;
+}
