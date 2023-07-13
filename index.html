@@ -17,17 +17,33 @@
   </header>
   <main class="container row d-flex justify-content-around ">
     <!--Sidebar: Search and city history -->
-    <div class="shadow p-2 mb-3 rounded bg-info col-md-4" id="sidebar">
+    <div class="p-2 mb-3 rounded col-md-4" id="sidebar">
 
       <form class="d-grid gap-2">
         <label for="searchCity" class="form-label">Search for a City:</label>
         <input type="text" class="form-control mb-1" id="searchCity" aria-describedby="searchForCity">
         <button type="submit" class="btn btn-primary">Search</button>
       </form>
+      <section id="priorSearchedCities"><!--Here the city history will display-->
+      </section>
 
     </div>
     <!--Display forecast result for selected city-->
-    <div class="shadow p-2 mb-3 rounded bg-danger col-md-8" id="show-forecast">
+    <div class="p-2 mb-3 rounded col-md-8" id="show-forecast">
+      <h2 class="display-6 text-center p-3" id="currentCityInfo">Miami, Fl</h2>
+      <section class="row d-flex justify-content-center ms-1 " id="currentForecast">
+        <div class="col bluish" id="currentTemp"> </div>
+        <div class="col greyish" id="currentWind"></div>
+        <div class="col bluish" id="currentHumidity"></div>
+      </section>
+      <section class="row d-flex justify-content-evenly ms-1 mt-2" id="currentForecast">
+        <h3 class="p-3" id="currentCityInfo">5 Day Forecast</h3>
+        <div class="col bluish" id="monDay"> </div>
+        <div class="col greyish" id="TuesDay"></div>
+        <div class="col bluish" id="wednesDay"></div>
+        <div class="col greyish" id="ThursDay"></div>
+        <div class="col bluish" id="FriDay"></div>
+      </section>
 
     </div>
 
