@@ -31,9 +31,17 @@
     <!--Display forecast result for selected city-->
     <div class="p-2 mb-3 rounded col-md-8" id="show-forecast">
       <h2 class="display-6 text-center p-3" id="currentCityInfo"></h2>
+      <h3 class="text-center p-3" id="timeDate"></h3>
+
       <section class="row d-flex justify-content-center ms-1 " id="currentForecast">
-        <div class="col bluish" id="currentTemp"> </div>
-        <div class="col greyish" id="currentWind"></div>
+        <div class="col bluish text-center" id="currentTemp">
+          <img src="" class="icon" />
+          <div class="grados display-5"></div>
+          <div class="weatherDescription mt-2"></div>
+        </div>
+        <div class="col greyish" id="currentWind">
+          
+        </div>
         <div class="col bluish" id="currentHumidity"></div>
       </section>
       <section class="row d-flex justify-content-evenly ms-1 mt-2" id="currentForecast">
