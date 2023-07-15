@@ -9,9 +9,7 @@ var currentHumidity = document.getElementById('currentHumidity');
 var priorSearchedCities = [];
 var priorSearchedContainer = document.getElementById('history');
 
-
-
- // Fetch current weather from searched city
+ // *** Fetch current weather from searched city
 var weather = {
   keyID : '&appid=7a2a3e009ff8ece7e90ad8dae53147aa',
   fetchWeather: function (city){
@@ -35,41 +33,38 @@ var weather = {
     document.querySelector('#currentHumidity').innerHTML = humidity + ' %';
     document.querySelector('#currentWind').innerHTML = speed ;
   },
-  
-  //****** 5 Day weather Forecast */
+
+  // *** 5 Day weather Forecast 
   fetchForecast: function (city){
     fetch(
-      'https://api.openweathermap.org/data/2.5/forecast?q=' + city + weather.keyID
+      'https://api.openweathermap.org/data/2.5/forecast?q=' + city +'&units=imperial' + weather.keyID
     )
     .then(response => response.json())
         .then(data => {
             var fiveDayForecast = document.getElementById('futureWeather');
             fiveDayForecast.innerHTML = '';
             for (let i = 0; i < data.list.length; i += 8) {
-                fiveDayForecast.innerHTML += `
-                  
-                    <div class="col fiveDayForecastCard">
-                      <h5 class="text-left">${new Date(data.list[i].dt_txt).toLocaleDateString()}</h5>
-                      <p class="text-left">Temperature: ${data.list[i].main.temp} F</p>
-                      <p class="text-left">Wind Speed: ${data.list[i].wind.speed} MPH</p>
-                      <p class="text-left">Humidity: ${data.list[i].main.humidity} %</p>
-                    </div>
-                  
-                 `;
+              var weatherIcon = data.list[i].weather[0].icon;
+              var iconUrl = "http://openweathermap.org/img/w/" + weatherIcon + ".png";  
+              fiveDayForecast.innerHTML += `
+                      <div class="col fiveDayForecastCard">
+                      <h5 class="text-center">${new Date(data.list[i].dt_txt).toLocaleDateString()}</h5>
+                      <p class="text-center"><img class="cardWthrIcon" src="${iconUrl}"></p>
+                      <p class="text-center">Temperature: ${data.list[i].main.temp} F</p>
+                      <p class="text-center">Wind Speed: ${data.list[i].wind.speed} MPH</p>
+                      <p class="text-center">Humidity: ${data.list[i].main.humidity} %</p>
+                    </div>`;
             }
         });
-    
-    // this.displayForecast(data)
   },
-
 };
 
-
+// *** Preload weather info to begin
 weather.fetchWeather('austin');
 weather.fetchForecast('austin');
 
 
-
+// *** Search for city
 searchBtn.addEventListener('click', function(event){
   event.preventDefault();
   var cityInputVal = document.getElementById('searchCity').value; 
@@ -78,11 +73,3 @@ searchBtn.addEventListener('click', function(event){
    console.log(cityInputVal);
    
 });
-
-
-
-
-
-
-// displayWeather : function(data){
-//   this.displayWeather(data));}
