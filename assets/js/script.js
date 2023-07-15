@@ -3,22 +3,23 @@
 
 // *** Document References
 var searchFormEl = document.getElementById('searchForm'); 
-var cityInputVal = document.getElementById('searchCity');
-var searchBtn = document.querySelector ('.btn-primary');
+var searchBtn = document.getElementById('search-btn');
 var currentCityInfo = document.getElementById('currentCityInfo');
 var currentTemp = document.getElementById('currentTemp');
 var currentWind = document.getElementById('currentWind');
 var currentHumidity = document.getElementById('currentHumidity');
 
+var priorSearchedCities = [];
+var priorSearchedContainer = document.getElementById('history');
 
 
 
  // Fetch current weather from searched city
 var weather = {
-  keyID : '7a2a3e009ff8ece7e90ad8dae53147aa',
+  keyID : '&appid=7a2a3e009ff8ece7e90ad8dae53147aa',
   fetchWeather: function (city){
     fetch(
-      'https://api.openweathermap.org/data/2.5/weather?q=' + city +'&units=imperial&appid=' + this.keyID
+      'https://api.openweathermap.org/data/2.5/weather?q=' + city +'&units=imperial' + this.keyID
     )
     .then((response) => response.json())
     .then((data) => this.displayWeather(data));
@@ -34,20 +35,25 @@ var weather = {
     document.querySelector('#timeDate').innerHTML = dayjs().format('dddd, MMMM D YYYY h:m a').toString();
     document.querySelector('.weatherDescription').innerHTML = description;
     document.querySelector('.grados').innerHTML = temp + '°F';
-    document.querySelector('#currentHumidity').innerHTML = `Humidity
-     ${humidity}%` ;
-    document.querySelector('#currentWind').innerHTML = 'Wind speed ' + speed + 'miles/h';
+    document.querySelector('#currentHumidity').innerHTML = humidity + ' %';
+    document.querySelector('#currentWind').innerHTML = speed ;
   },
-  search : function(){
-    this.fetchWeather(cityInputVal);
-  }
-
-
+ 
 };
 
 
-searchBtn.addEventListener('click', function(){
-  weather.search();
+weather.fetchWeather('austin');
 
+searchBtn.addEventListener('click', function(event){
+  event.preventDefault();
+  var cityInputVal = document.getElementById('searchCity').value; 
+  weather.fetchWeather(cityInputVal);
+   console.log(cityInputVal);
+   
 });
+
+
+
+
+
 

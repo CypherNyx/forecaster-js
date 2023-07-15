@@ -22,9 +22,9 @@
       <form class="d-grid gap-2" id="searchForm">
         <label for="searchCity" class="form-label">Search for a City:</label>
         <input type="text" class="form-control mb-1 " id="searchCity" aria-describedby="searchForCity">
-        <button type="submit" class="btn btn-primary"> Search</button>
+        <button type="submit" class="btn btn-primary" id="search-btn"> Search</button>
       </form>
-      <section id="priorSearchedCities"><!--Here the city history will display-->
+      <section id="history"><!--Here the city history will display-->
       </section>
 
     </div>
@@ -39,10 +39,18 @@
           <div class="grados display-5"></div>
           <div class="weatherDescription mt-2"></div>
         </div>
-        <div class="col greyish" id="currentWind">
-          
+        <div class="col greyish text-center p-2" id="windCtnr">
+          <p>Wind Speed<br>
+            <span id="currentWind" class="display-5"></span>
+            <br>miles per hour
+          </p>
+
         </div>
-        <div class="col bluish" id="currentHumidity"></div>
+        <div class="col bluish text-center p-2" id="humidityCtnr">
+          <p>Humidity<br>
+            <span id="currentHumidity" class="display-5"></span>
+          </p>
+        </div>
       </section>
       <section class="row d-flex justify-content-evenly ms-1 mt-2" id="currentForecast">
         <h3 class="p-3" id="currentCityInfo">5 Day Forecast</h3>
@@ -66,7 +74,7 @@
     crossorigin="anonymous"></script>
   <!--* DayJS -->
   <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-  <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/script.js" defer></script>
 </body>
 
 </html>
