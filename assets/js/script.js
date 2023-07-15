@@ -37,19 +37,22 @@ var weather = {
   // *** 5 Day weather Forecast 
   fetchForecast: function (city){
     fetch(
-      'https://api.openweathermap.org/data/2.5/forecast?q=' + city + weather.keyID
+      'https://api.openweathermap.org/data/2.5/forecast?q=' + city +'&units=imperial' + weather.keyID
     )
     .then(response => response.json())
         .then(data => {
             var fiveDayForecast = document.getElementById('futureWeather');
             fiveDayForecast.innerHTML = '';
             for (let i = 0; i < data.list.length; i += 8) {
-                fiveDayForecast.innerHTML += `
+              var weatherIcon = data.list[i].weather[0].icon;
+              var iconUrl = "http://openweathermap.org/img/w/" + weatherIcon + ".png";  
+              fiveDayForecast.innerHTML += `
                       <div class="col fiveDayForecastCard">
-                      <h5 class="text-left">${new Date(data.list[i].dt_txt).toLocaleDateString()}</h5>
-                      <p class="text-left">Temperature: ${data.list[i].main.temp} F</p>
-                      <p class="text-left">Wind Speed: ${data.list[i].wind.speed} MPH</p>
-                      <p class="text-left">Humidity: ${data.list[i].main.humidity} %</p>
+                      <h5 class="text-center">${new Date(data.list[i].dt_txt).toLocaleDateString()}</h5>
+                      <p class="text-center"><img class="cardWthrIcon" src="${iconUrl}"></p>
+                      <p class="text-center">Temperature: ${data.list[i].main.temp} F</p>
+                      <p class="text-center">Wind Speed: ${data.list[i].wind.speed} MPH</p>
+                      <p class="text-center">Humidity: ${data.list[i].main.humidity} %</p>
                     </div>`;
             }
         });
