@@ -25,3 +25,24 @@ h3 {
   background: #dfedf6db;
   padding: 2%;
 }
+
+.cur-city-wind {
+  padding-top: 2rem;
+  font-size: 154%;
+}
+
+#futureWeather>div:nth-child(odd) {
+  background: #c0dcecbd;
+}
+
+#futureWeather>div:nth-child(even) {
+  background: #dfedf6db;
+}
+
+
+.fiveDayForecastCard {
+  margin: 1rem;
+  padding: 1.2rem;
+  border-radius: 1rem;
+  filter: drop-shadow(2px 4px 6px #8fb2c5);
+}
