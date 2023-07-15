@@ -2,7 +2,7 @@
 var searchFormEl = document.getElementById('searchForm'); 
 var searchBtn = document.getElementById('search-btn');
 var currentCityInfo = document.getElementById('currentCityInfo');
-var currentTemp = document.getElementById('currentTemp');
+var currentGrados = document.getElementById('grados');
 var currentWind = document.getElementById('currentWind');
 var currentHumidity = document.getElementById('currentHumidity');
 
@@ -25,13 +25,13 @@ var weather = {
     const { temp, humidity } = data.main;
     const { speed } = data.wind;
     console.log (name, icon, description,temp,humidity, speed);
-    document.querySelector('#currentCityInfo').innerHTML = 'Weather in ' + name;
+    currentCityInfo.innerHTML = 'Weather in ' + name;
     document.querySelector('.icon').src = 'https://openweathermap.org/img/wn/' + icon + '@2x.png'
     document.querySelector('#timeDate').innerHTML = dayjs().format('dddd, MMMM D YYYY').toString();
     document.querySelector('.weatherDescription').innerHTML = description;
-    document.querySelector('.grados').innerHTML = temp + '°F';
-    document.querySelector('#currentHumidity').innerHTML = humidity + ' %';
-    document.querySelector('#currentWind').innerHTML = speed ;
+    currentGrados.innerHTML = temp + '°F';
+    currentHumidity.innerHTML = humidity + ' %';
+    currentWind.innerHTML = speed ;
   },
 
   // *** 5 Day weather Forecast 
@@ -43,7 +43,7 @@ var weather = {
         .then(data => {
             var fiveDayForecast = document.getElementById('futureWeather');
             fiveDayForecast.innerHTML = '';
-            for (let i = 0; i < data.list.length; i += 8) {
+             for (let i = 0; i < data.list.length; i += 8) {
               var weatherIcon = data.list[i].weather[0].icon;
               var iconUrl = "http://openweathermap.org/img/w/" + weatherIcon + ".png";  
               fiveDayForecast.innerHTML += `
@@ -70,6 +70,33 @@ searchBtn.addEventListener('click', function(event){
   var cityInputVal = document.getElementById('searchCity').value; 
   weather.fetchWeather(cityInputVal);
   weather.fetchForecast(cityInputVal);
-   console.log(cityInputVal);
-   
+
+  
+  
 });
+
+// //***** Search History 
+
+function storeCity(cityInputVal){
+  var cities = localStorage.getItem("oldCities");
+  if (!cities){
+    priorSearchedCities.push(cityInputVal);
+    localStorage.setItem("oldCities", JSON.stringify(priorSearchedCities));
+  } else {
+    cities.push(priorSearchedCities);
+    localStorage.setItem("oldCities", cities);
+    
+
+  }
+};
+
+console.log('array history', priorSearchedCities);
+
+// function renderMessage() {
+//   var listSearched = JSON.parse(localStorage.getItem("priorSearchedCities"));
+//   if (listSearched !== null) {
+//     document.querySelector(".message").textContent = listSearched.student + 
+//     " received error" 
+//   }
+// }
+
