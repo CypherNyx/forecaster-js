@@ -13,15 +13,16 @@
 
 <body class="container-lg">
   <header class="container-fluid">
-    <h1 class="display-4 shadow p-3 mb-5 bg-body rounded text-center"> Weather Forecast</h1>
+    <h1 class="display-4 shadow p-3 mb-3 bg-body rounded text-center"> Weather Forecast</h1>
   </header>
   <main class="container row d-flex justify-content-around ">
     <!--Sidebar: Search and city history -->
-    <div class="p-2 mb-3 rounded col-md-4" id="sidebar">
+    <div class="p-2 mb-3 mt-3 rounded col-md-2" id="sidebar">
 
       <form class="d-grid gap-2" id="searchForm">
         <label for="searchCity" class="form-label">Search for a City:</label>
-        <input type="text" class="form-control mb-1 " id="searchCity" aria-describedby="searchForCity">
+        <input type="text" class="form-control mb-1 " id="searchCity" placeholder="New York"
+          aria-describedby="searchForCity">
         <button type="submit" class="btn btn-primary" id="search-btn"> Search</button>
       </form>
       <section id="history"><!--Here the city history will display-->
@@ -29,7 +30,7 @@
 
     </div>
     <!--Display forecast result for selected city-->
-    <div class="p-2 mb-3 rounded col-md-8" id="show-forecast">
+    <div class="p-2 mb-3 rounded col-md-10" id="show-forecast">
       <h2 class="display-6 text-center p-3" id="currentCityInfo"></h2>
       <h3 class="text-center p-3" id="timeDate"></h3>
 
@@ -40,25 +41,29 @@
           <div class="weatherDescription mt-2"></div>
         </div>
         <div class="col greyish text-center p-2" id="windCtnr">
-          <p>Wind Speed<br>
+          <p class="cur-city-wind">Wind Speed<br>
             <span id="currentWind" class="display-5"></span>
-            <br>miles per hour
+            <br>MPH
           </p>
 
         </div>
         <div class="col bluish text-center p-2" id="humidityCtnr">
-          <p>Humidity<br>
+          <p class="cur-city-wind">Humidity<br>
             <span id="currentHumidity" class="display-5"></span>
           </p>
         </div>
       </section>
-      <section class="row d-flex justify-content-evenly ms-1 mt-2" id="currentForecast">
-        <h3 class="p-3" id="currentCityInfo">5 Day Forecast</h3>
-        <div class="col bluish" id="monDay"> </div>
+      <h3 class="p-4 mt-3 text-center" id="forecasTitle">5 Day Forecast</h3>
+      <section class="d-flex justify-content-around" id="futureWeather">
+
+
+
+
+        <!-- <div class="col bluish" id="monDay"></div>
         <div class="col greyish" id="TuesDay"></div>
         <div class="col bluish" id="wednesDay"></div>
         <div class="col greyish" id="ThursDay"></div>
-        <div class="col bluish" id="FriDay"></div>
+        <div class="col bluish" id="FriDay"></div> -->
       </section>
 
     </div>
